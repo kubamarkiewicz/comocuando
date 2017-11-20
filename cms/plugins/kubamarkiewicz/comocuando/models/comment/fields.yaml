@@ -1,0 +1,25 @@
+fields:
+    id:
+        label: ID
+        span: auto
+        disabled: 1
+        type: number
+    video_id:
+        label: Video
+        span: left
+        type: number
+    audio_id:
+        label: Audio
+        span: left
+        type: number
+    date:
+        label: Date
+        mode: datetime
+        span: left
+        type: datepicker
+        format: Y-m-d
+    comment:
+        label: 'Como cuando'
+        size: large
+        span: left
+        type: textarea

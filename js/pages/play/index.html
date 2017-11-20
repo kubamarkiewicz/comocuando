@@ -1,0 +1,66 @@
+
+	<div id="preloader"></div>
+
+
+    <section id="play">
+
+		<nav class="top">
+			<a href="index.html" class="btn menu control">
+				<span class="slice"></span>
+				<span class="slice"></span>
+				<span class="slice"></span>
+			</a>
+    		<!-- <h1 id="logo">como cuando</h1> -->
+		</nav>
+
+		<div class="wrap">
+			<video id="video-player" ng-src="{{ videoSrc }}" loop></video>
+        	<audio id="audio-player" ng-src="{{ audioSrc }}" loop></audio>
+		
+			<nav class="controls">
+				<button class="btn play control" ng-click="togglePlay()"><span class="glyphicon glyphicon-pause"></span></button>
+				<a class="btn control comments" data-toggle="modal" data-target="#commentsModal">
+					<span class="hand">☞</span>
+					<span class="">Historias</span>
+				</a>
+			</nav>
+		</div>
+
+    </section>
+
+	<div id="commentsModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Historias</h4>
+				</div>
+				<div class="modal-body">
+					<div class="comments">
+						<div class="comment" ng-repeat="item in commentsData">
+							Como cuando {{ item.comment }}
+							<div class="spacer">&bull;&bull;&bull;</div>
+						</div>
+					</div>
+
+					<div class="info">
+						¿Qué te recuerda la escena?
+					</div>
+
+					<form id="comment-form" ng-submit="submit()">
+						<p class="textarea-wrap">
+							<label>Como cuando</label>
+							<textarea name="comment" ng-model="comment" class="form-control" placeholder="..." required></textarea>
+						</p>
+						<p class="text-right"><button type="submit" class="btn btn-primary" data-loading-text="<span class='glyphicon glyphicon-repeat gly-spin'></span> Enviar"><span class="hand">☞</span> Publicar</button></p>
+					</form>
+
+					<div class="social-share">
+						<div class="fb-like" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+						<!-- <a href="http://twitter.com/share?text=Como cuando ...&url=http://comocuando.net/{{videoId}}/{{audioId}}" target="_blank">Tweet</a> -->
+						<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Como cuando ...&url=http://comocuando.net/{{videoId}}/{{audioId}}"><img src="images/tweet.jpg" alt="Tweet"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

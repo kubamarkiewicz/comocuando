@@ -1,0 +1,10 @@
+name: Comments
+form: $/kubamarkiewicz/comocuando/models/comment/fields.yaml
+modelClass: KubaMarkiewicz\ComoCuando\Models\Comment
+defaultRedirect: kubamarkiewicz/comocuando/comments
+create:
+    redirect: 'kubamarkiewicz/comocuando/comments/update/:id'
+    redirectClose: kubamarkiewicz/comocuando/comments
+update:
+    redirect: kubamarkiewicz/comocuando/comments
+    redirectClose: kubamarkiewicz/comocuando/comments

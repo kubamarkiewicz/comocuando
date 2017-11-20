@@ -1,0 +1,83 @@
+
+    <section id="backgrounds">
+        
+        <div class="background" 
+            ng-repeat="item in videoData" 
+            id="background-{{ item.id }}"
+            style="background-image: url({{item.background}})"
+                >
+
+    </section>
+
+    
+    <section id="menu">
+
+        <h1 id="logo">como &nbsp; cuando</h1>
+        <a id="credits-link" class="btn" data-toggle="modal" data-target="#creditsModal">créditos</a>
+
+        <div id="canvasContainer"></div>
+        <!-- <canvas id="myCanvas" width="100%" height="100%"></canvas> -->
+        
+        <div class="wrap">
+
+            <div class="video">
+                <a 
+                    ng-repeat="item in videoData" 
+                    ng-click="selectVideo(item.id)" 
+                    ng-class="{selected: (item.id) == videoId }"
+                    id="video-{{ item.id }}"
+                >
+                    <span 
+                        class="icon" 
+                        style="background-color: rgba({{ item.r }},{{ item.g }},{{ item.b }},0.5);
+                        "></span>
+                </a>
+            </div> 
+               
+            <div class="audio">
+                <a 
+                    ng-repeat="item in audioData" 
+                    ng-click="selectAudio(item.id)" 
+                    ng-class="{selected: (item.id) == audioId }" 
+                    id="audio-{{ item.id }}" 
+                >
+                    <span class="icon">
+                        <span class="speaker"
+                        style="transform: rotate(-{{ $index * 3 }}deg); background-color: rgba({{ item.r }},{{ item.g }},{{ item.b }},0.5);"></span>
+                    </span>
+                </a>
+            </div>  
+
+        </div>
+
+
+    </section>
+
+    <audio id="audio-player-2" src="sounds/PatchArena_marimba-089-f5.mp3"></audio>
+    <audio id="audio-player-back" src="data/audio/04.mp3" autoplay loop></audio>
+	
+
+
+    <div id="creditsModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">créditos</h4>
+                </div>
+                <div class="modal-body">
+                    
+<p><label>Dirección:</label> <span>Vica Cortés</span></p>
+<p><label>Producción:</label> <span>Aseneth Suarez</span></p>
+<p><label>Actrices:</label> <span>Maruia Shelton<br>Camila Pinzón<br>Sanly Rodriguez<br>Angela Triana<br>Yiseth Castañeda<br>Vica Cortés</span></p>
+<p><label>Dirección de arte:</label> <span>Liliana Cortés<br>Juana Londoño</span></p>
+<p><label>Fotografía:</label> <span>Mónica Cifuentes</span></p>
+<p><label>Fotografía fija:</label> <span>Santiago Londoño</span></p>
+<p><label>Diseño y construcción de sonido:</label> <span>Emilio Barriga</span></p>
+<p><label>Programación:</label> <span>Kuba Markiewicz</span></p>
+<p><label>Agradecimientos:</label> <span>Andres Porras, 16/9 Producciones</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+

@@ -1,0 +1,12 @@
+plugin:
+    name: 'kubamarkiewicz.comocuando::lang.plugin.name'
+    description: 'kubamarkiewicz.comocuando::lang.plugin.description'
+    author: 'Kuba Markiewicz'
+    icon: oc-icon-circle-o
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: 'Como cuando'
+        url: kubamarkiewicz/comocuando/comments
+        icon: icon-circle-o
+        order: '0'
