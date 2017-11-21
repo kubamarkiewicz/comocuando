@@ -14,7 +14,8 @@ app.controller('PlayController', function($scope, $rootScope, $http, $routeParam
     setTimeout(function(){
         audioPlayer.play();
     	videoPlayer.play();
-    }, 1000);
+        // $('#commentsModal').scrollTop(0);
+    }, 100);
 
     $scope.togglePlay = function() {
         if (videoPlayer.paused) {
@@ -80,5 +81,11 @@ app.controller('PlayController', function($scope, $rootScope, $http, $routeParam
         $("#comment-form button[type=submit]").button('loading').attr('disabled', true);
 
     }
+
+
+    $('#commentsModal').on('hide.bs.modal', function () {
+        $('#commentsModal').scrollTop(0);
+    });
+
 
 });
