@@ -89,13 +89,17 @@ app.controller('HomeController', function($scope, $rootScope, $http, $location, 
     function drawLine(videoId, audioId) {
         var pointA = $("#video-" + videoId).offset();
         var pointB = $("#audio-" + audioId).offset();
+        if (!pointA || !pointB) {
+            return;
+        }
+
         var r = 6;
         var x1 = pointA.left + r;
         var y1 = pointA.top + 2*r;
         var x2 = pointB.left + r;
         var y2 = pointB.top;
 
-        var controlPointY = 90;
+        var controlPointY = 300;
 
         // add canvas
         var canvas = document.createElement('canvas');
