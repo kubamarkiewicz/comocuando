@@ -14,7 +14,8 @@
 /* Web Fonts                                   */
 /***********************************************/
 
-@import url('https://fonts.googleapis.com/css?family=Simonetta:400,400i|Vesper+Libre:900');
+@import url('https://fonts.googleapis.com/css?family=Simonetta:400');
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:300,600');
 
 
 /***********************************************/
@@ -26,10 +27,12 @@ html, body {
 }
 
 body {
-    font-family: 'Simonetta', cursive;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
     letter-spacing: 0.05em;
     font-size: 16px;
-    background-color: #fffefc;
+    background-color: #121212;
+    color: #bbbbbb;
 }
 a, a:focus { 
     color: inherit;
@@ -44,8 +47,7 @@ a:active {
 }
 
 h1, h2, h3 {
-    font-weight: 900;
-    font-family: 'Vesper Libre', serif;
+    font-weight: 600;
 }
 h3 {
     font-size: 16px;
@@ -63,8 +65,9 @@ h3 {
     border: none;
     outline: none !important;
     color: inherit !important;
-    font-weight: 900;
-    font-family: 'Vesper Libre', serif;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.4em;;
 }
 .btn:hover { 
     color: inherit; 
@@ -74,11 +77,11 @@ h3 {
     opacity: 1;
 }
 .modal-backdrop {
-    background-color: #ffffff;
+    background-color: #000000;
 }
 .modal-backdrop.in {
-    opacity: 0.5;
-    background-color: #ffffff;;
+    opacity: 0.25;
+    background-color: #000000;;
 }
 .modal-header {
     border: none;
@@ -91,15 +94,14 @@ h3 {
     color: #333;
 }
 .modal-content .modal-body {
-    padding: 10px 80px 40px 80px;
-    
+    padding: 10px 40px 40px 40px;
 }
 .modal-title {;
-    font-size: 22px;
-    text-align: center;
-    font-weight: 900;;
-    font-family: 'Vesper Libre', serif;;
-    margin-top: 30px;
+    font-size: 16px;;
+    font-weight: 600;;
+    margin-top: 30px;;
+    text-transform: uppercase;;
+    letter-spacing: 0.4em;;;
 }
 .close,
 .close:hover {
@@ -201,7 +203,7 @@ h3 {
     line-height: 25px;
     z-index: 10;
     opacity: 0.9;
-    font-size: 18px;
+    font-size: 14px;
     right: 8vw;
     transform: translateX(50%);
     font-family: inherit;;
@@ -220,12 +222,16 @@ h3 {
 #preloader {
     position: absolute;
     z-index: -1;
-    width: 100%;
-    height: 100%;
-    background-image: url(../images/spinner.gif);
+    width: 200px;
+    height: 200px;
+    background-image: url(../images/loading.png);
     background-repeat: no-repeat;
     background-position: center center;
+    background-size: 200px;
     /*background-size: 60px;*/
+    animation: spin 5s infinite linear;
+    left: calc(50% - 100px);
+    top: calc(50% - 100px);
 }
 
 .gly-spin {
@@ -332,7 +338,7 @@ section#backgrounds .background.selected {
 
 body.page-home {
     background-color: #121212;
-    color: #fffefc;
+    color: #cfccc7;
 }
 
 section#menu {
@@ -558,11 +564,11 @@ section#play .wrap {
     100%    { opacity:1; } 
 }
 section#play nav {
-    opacity: 0.1;
     animation-name:fadeInOnLoad;
     animation-fill-mode:forwards;
     animation-duration:0s;
     animation-delay:1.5s;
+    opacity:1;
 }
 section#play #logo {
 }
@@ -582,10 +588,10 @@ section#play nav .btn:active {
     opacity: 1;
 }
 section#play nav .btn {
-    color: inherit;
     margin-bottom: 0;
     margin-top: 0;
     line-height: 100%;
+    color: inherit;
 }
 section#play nav.top {
     height: 50px;
@@ -607,7 +613,7 @@ section#play nav.top a.menu .slice {
     display: block;
     width: 17px;
     margin: 5px auto 0 auto;
-    border-top: 1px solid #333;
+    border-top: 1px solid #bbbbbb;
 }
 section#play nav.controls {
     padding-top: 14px;
@@ -636,7 +642,7 @@ section#play #video-player {
     display: block;
 }
 section#play nav.controls a.comments {
-    font-size: 22px;
+    font-size: 16px;
     padding-right: 36px;
 }
 
@@ -645,13 +651,15 @@ section#play .btn.credits {
 }
 
 #commentsModal .info {
-    font-weight: bold;
+    font-weight: 600;
     margin-bottom: 10px;
     margin-top: 15px;
     font-size: 27px;
     text-align: center;;
 }
 #commentsModal .comments {
+    font-family: 'Simonetta', cursive;
+    font-weight: 400;
     font-size: 18px;
 }
 #commentsModal .comments .comment {
@@ -703,16 +711,18 @@ section#play .btn.credits {
 
 #creditsModal p label {
     text-transform: uppercase;
-    font-weight: 800;
     width: 314px;
     text-align: right;
     display: inline-block;
-    font-size: 0.7em;
+    font-size: 12px;;
     float: left;
-    padding-top: 5px;
+    padding-top: 6px;
     clear: left;
+    font-weight: 300;
+    letter-spacing: 0.2em;;
 }
 #creditsModal p span {
     display: block;
     margin-left: 325px;
+    font-size: 18px;;
 }
