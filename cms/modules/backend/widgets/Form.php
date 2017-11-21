@@ -75,7 +75,7 @@ class Form extends WidgetBase
     //
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     protected $defaultAlias = 'form';
 
@@ -121,7 +121,7 @@ class Form extends WidgetBase
     protected $widgetManager;
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function init()
     {
@@ -155,7 +155,7 @@ class Form extends WidgetBase
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     protected function loadAssets()
     {
@@ -216,10 +216,12 @@ class Form extends WidgetBase
         $this->prepareVars();
 
         /*
-         * Apply preview mode to widgets
+         * Force preview mode on all widgets
          */
-        foreach ($this->formWidgets as $widget) {
-            $widget->previewMode = $this->previewMode;
+        if ($this->previewMode) {
+            foreach ($this->formWidgets as $widget) {
+                $widget->previewMode = $this->previewMode;
+            }
         }
 
         return $this->makePartial($targetPartial, $extraVars);
@@ -697,8 +699,9 @@ class Form extends WidgetBase
         /*
          * Check model if field is required
          */
-        if (!$field->required && $this->model && method_exists($this->model, 'isAttributeRequired')) {
-            $field->required = $this->model->isAttributeRequired($field->fieldName);
+        if ($field->required === null && $this->model && method_exists($this->model, 'isAttributeRequired')) {
+            $fieldName = implode('.', HtmlHelper::nameToArray($field->fieldName));
+            $field->required = $this->model->isAttributeRequired($fieldName);
         }
 
         /*
@@ -1016,8 +1019,18 @@ class Form extends WidgetBase
      */
     protected function applyFiltersFromModel()
     {
+        /*
+         * Standard usage
+         */
         if (method_exists($this->model, 'filterFields')) {
             $this->model->filterFields((object) $this->allFields, $this->getContext());
+        }
+
+        /*
+         * Advanced usage
+         */
+        if (method_exists($this->model, 'fireEvent')) {
+            $this->model->fireEvent('model.form.filterFields', [$this]);
         }
     }
 

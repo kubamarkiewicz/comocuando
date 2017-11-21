@@ -3,7 +3,7 @@
 /*
  * This file is part of Psy Shell.
  *
- * (c) 2012-2015 Justin Hileman
+ * (c) 2012-2017 Justin Hileman
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -136,6 +136,20 @@ class ConfigPaths
     {
         $xdg = new Xdg();
 
+        try {
+            // Check with XDG to see if there's an explicit one to return...
+            return $xdg->getRuntimeDir(true) . '/psysh';
+        } catch (\RuntimeException $e) {
+            // Well. That didn't work. One of the next ones should.
+        }
+
+        // Since we don't have an explicit XDG directory, and since the XDG
+        // library doesn't really work on Windows, let's throw the Windows users
+        // a bone here.
+        if (defined('PHP_WINDOWS_VERSION_MAJOR')) {
+            return strtr(sys_get_temp_dir(), '\\', '/') . '/psysh';
+        }
+
         return $xdg->getRuntimeDir(false) . '/psysh';
     }
 
@@ -179,5 +193,44 @@ class ConfigPaths
         }
 
         return $files;
+    }
+
+    /**
+     * Ensure that $file exists and is writable, make the parent directory if necessary.
+     *
+     * Generates E_USER_NOTICE error if either $file or its directory is not writable.
+     *
+     * @param string $file
+     *
+     * @return string|false Full path to $file, or false if file is not writable
+     */
+    public static function touchFileWithMkdir($file)
+    {
+        if (file_exists($file)) {
+            if (is_writable($file)) {
+                return $file;
+            }
+
+            trigger_error(sprintf('Writing to %s is not allowed.', $file), E_USER_NOTICE);
+
+            return false;
+        }
+
+        $dir = dirname($file);
+
+        if (!is_dir($dir)) {
+            // Just try making it and see if it works
+            @mkdir($dir, 0700, true);
+        }
+
+        if (!is_dir($dir) || !is_writable($dir)) {
+            trigger_error(sprintf('Writing to %s is not allowed.', $dir), E_USER_NOTICE);
+
+            return false;
+        }
+
+        touch($file);
+
+        return $file;
     }
 }

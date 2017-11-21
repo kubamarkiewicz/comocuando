@@ -49,7 +49,7 @@ class ListColumn
 
     /**
      * @var string Model attribute to use for the display value, this will
-     * override any $sqlSelect definition.
+     * override any `$sqlSelect` definition.
      */
     public $valueFrom;
 
@@ -60,7 +60,7 @@ class ListColumn
 
     /**
      * @var string Custom SQL for selecting this record display value,
-     * the @ symbol is replaced with the table name.
+     * the `@` symbol is replaced with the table name.
      */
     public $sqlSelect;
 
@@ -232,6 +232,9 @@ class ListColumn
                 $result = $result->{$key};
             }
             else {
+                if (is_array($result) && array_key_exists($key, $result)) {
+                    return $result[$key];
+                }
                 if (!isset($result->{$key})) {
                     return $default;
                 }

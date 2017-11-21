@@ -8,10 +8,6 @@ fields:
         label: Video
         span: left
         type: number
-    audio_id:
-        label: Audio
-        span: left
-        type: number
     date:
         label: Date
         mode: datetime

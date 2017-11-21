@@ -156,7 +156,7 @@ return [
         'menu_layouts_label' => 'Πρότυπα Ηλεκτρονικού Ταχυδρομείου',
         'layout' => 'Διάταξη',
         'layouts' => 'Διάταξεις',
-        'no_layout' => '-- Χωρίς διάταξη --',        
+        'no_layout' => '-- Χωρίς διάταξη --',
         'name' => 'Όνομα',
         'name_comment' => 'Μοναδικό όνομα που χρησιμοποιείται για την αναφορά σε αυτό το πρότυπο',
         'code' => 'Κωδικος',
@@ -203,7 +203,7 @@ return [
         'plugin_description' => 'Περιγραφή',
         'plugin_version' => 'Έκδοση',
         'plugin_author' => 'Δημιουργός',
-        'plugin_not_found' => 'Plugin not found',
+        'plugin_not_found' => 'Το πρόσθετο δε βρέθηκε',
         'core_current_build' => 'Τρέχουσα έκδοση',
         'core_build' => 'Έκδοση :build',
         'core_build_help' => 'Η τελευταία έκδοση είναι διαθέσιμη.',
@@ -239,7 +239,7 @@ return [
             'skip' => 'Παράκαμψη αυτού του πρόσθετου (μόνο μια φορά)',
             'ignore' => 'Παράκαμψη αυτού του πρόσθετου (πάντα)',
         ],
-        'important_action_required' => 'Απαιτητέ ενέργεια',
+        'important_action_required' => 'Απαιτείται ενέργεια',
         'important_view_guide' => 'Εμφάνιση οδηγού αναβάθμισης',
         'important_alert_text' => 'Κάποιες ενημερώσεις χρειάζονται την προσοχή σας.',
         'details_title' => 'Λεπτομέρειες πρόσθετου',
@@ -312,5 +312,9 @@ return [
         'manage_editor' => 'Διαχείριση προτιμήσεων του επεξεργαστεί κώδικα',
         'view_the_dashboard' => 'Προβολή του πίνακα ελέγχου',
         'manage_branding' => 'Προσαρμογή του back-end',
-    ]
+    ],
+    'media' => [
+        'invalid_path' => "Ορίστηκε μη έγκυρη διαδρομή αρχείου : ':path'.",
+        'folder_size_items' => 'αντικείμενο(α)',
+    ],
 ];

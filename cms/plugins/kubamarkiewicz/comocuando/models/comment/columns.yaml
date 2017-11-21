@@ -11,15 +11,9 @@ columns:
         searchable: true
         sortable: true
         width: 140px
-        format: Y-m-d H:i
+        format: 'Y-m-d H:i'
     video_id:
         label: Video
-        type: text
-        searchable: true
-        sortable: true
-        width: 30px
-    audio_id:
-        label: Audio
         type: text
         searchable: true
         sortable: true

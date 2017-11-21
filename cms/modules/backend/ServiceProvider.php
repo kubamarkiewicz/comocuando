@@ -5,7 +5,7 @@ use Backend;
 use BackendMenu;
 use BackendAuth;
 use Backend\Classes\WidgetManager;
-use System\Models\MailTemplate;
+use System\Classes\MailManager;
 use System\Classes\CombineAssets;
 use System\Classes\SettingsManager;
 use October\Rain\Support\ModuleServiceProvider;
@@ -51,10 +51,10 @@ class ServiceProvider extends ModuleServiceProvider
      */
     protected function registerMailer()
     {
-        MailTemplate::registerCallback(function ($template) {
-            $template->registerMailTemplates([
-                'backend::mail.invite'  => 'Invitation for newly created administrators.',
-                'backend::mail.restore' => 'Password reset instructions for backend-end administrators.',
+        MailManager::instance()->registerCallback(function ($manager) {
+            $manager->registerMailTemplates([
+                'backend::mail.invite',
+                'backend::mail.restore',
             ]);
         });
     }
@@ -64,10 +64,12 @@ class ServiceProvider extends ModuleServiceProvider
      */
     protected function registerAssetBundles()
     {
-        CombineAssets::registerCallback(function($combiner) {
+        CombineAssets::registerCallback(function ($combiner) {
             $combiner->registerBundle('~/modules/backend/assets/less/october.less');
             $combiner->registerBundle('~/modules/backend/assets/js/october.js');
             $combiner->registerBundle('~/modules/backend/widgets/table/assets/js/build.js');
+            $combiner->registerBundle('~/modules/backend/widgets/mediamanager/assets/js/mediamanager-browser.js');
+            $combiner->registerBundle('~/modules/backend/widgets/mediamanager/assets/less/mediamanager.less');
             $combiner->registerBundle('~/modules/backend/formwidgets/codeeditor/assets/less/codeeditor.less');
             $combiner->registerBundle('~/modules/backend/formwidgets/codeeditor/assets/js/build.js');
             $combiner->registerBundle('~/modules/backend/formwidgets/fileupload/assets/less/fileupload.less');
@@ -95,7 +97,15 @@ class ServiceProvider extends ModuleServiceProvider
                     'iconSvg'     => 'modules/backend/assets/images/dashboard-icon.svg',
                     'url'         => Backend::url('backend'),
                     'permissions' => ['backend.access_dashboard'],
-                    'order'       => 1
+                    'order'       => 10
+                ],
+                'media' => [
+                    'label'       => 'backend::lang.media.menu_label',
+                    'icon'        => 'icon-folder',
+                    'iconSvg'     => 'modules/backend/assets/images/media-icon.svg',
+                    'url'         => Backend::url('backend/media'),
+                    'permissions' => ['media.*'],
+                    'order'       => 200
                 ]
             ]);
         });
@@ -107,7 +117,7 @@ class ServiceProvider extends ModuleServiceProvider
     protected function registerBackendReportWidgets()
     {
         WidgetManager::instance()->registerReportWidgets(function ($manager) {
-            $manager->registerReportWidget('Backend\ReportWidgets\Welcome', [
+            $manager->registerReportWidget(\Backend\ReportWidgets\Welcome::class, [
                 'label'   => 'backend::lang.dashboard.welcome.widget_title_default',
                 'context' => 'dashboard'
             ]);
@@ -140,6 +150,10 @@ class ServiceProvider extends ModuleServiceProvider
                 'backend.manage_branding' => [
                     'label' => 'system::lang.permissions.manage_branding',
                     'tab'   => 'system::lang.permissions.name'
+                ],
+                'media.manage_media' => [
+                    'label' => 'backend::lang.permissions.manage_media',
+                    'tab' => 'system::lang.permissions.name',
                 ]
             ]);
         });
@@ -163,6 +177,7 @@ class ServiceProvider extends ModuleServiceProvider
             $manager->registerFormWidget('Backend\FormWidgets\RecordFinder', 'recordfinder');
             $manager->registerFormWidget('Backend\FormWidgets\Repeater', 'repeater');
             $manager->registerFormWidget('Backend\FormWidgets\TagList', 'taglist');
+            $manager->registerFormWidget('Backend\FormWidgets\MediaFinder', 'mediafinder');
         });
     }
 
@@ -198,7 +213,7 @@ class ServiceProvider extends ModuleServiceProvider
                     'description' => 'backend::lang.myaccount.menu_description',
                     'category'    => SettingsManager::CATEGORY_MYSETTINGS,
                     'icon'        => 'icon-user',
-                    'url'         => Backend::URL('backend/users/myaccount'),
+                    'url'         => Backend::url('backend/users/myaccount'),
                     'order'       => 500,
                     'context'     => 'mysettings',
                     'keywords'    => 'backend::lang.myaccount.menu_keywords'
@@ -208,7 +223,7 @@ class ServiceProvider extends ModuleServiceProvider
                     'description' => 'backend::lang.backend_preferences.menu_description',
                     'category'    => SettingsManager::CATEGORY_MYSETTINGS,
                     'icon'        => 'icon-laptop',
-                    'url'         => Backend::URL('backend/preferences'),
+                    'url'         => Backend::url('backend/preferences'),
                     'permissions' => ['backend.manage_preferences'],
                     'order'       => 510,
                     'context'     => 'mysettings'

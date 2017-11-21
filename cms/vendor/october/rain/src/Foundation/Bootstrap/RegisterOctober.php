@@ -4,7 +4,6 @@ use Illuminate\Contracts\Foundation\Application;
 
 class RegisterOctober
 {
-
     /**
      * Specific features for OctoberCMS.
      *
@@ -13,6 +12,13 @@ class RegisterOctober
      */
     public function bootstrap(Application $app)
     {
+        /*
+         * Workaround for CLI and URL based in subdirectory
+         */
+        if ($app->runningInConsole()) {
+            $app['url']->forceRootUrl($app['config']->get('app.url'));
+        }
+
         /*
          * Register singletons
          */
@@ -60,5 +66,4 @@ class RegisterOctober
 
         return $url;
     }
-
 }

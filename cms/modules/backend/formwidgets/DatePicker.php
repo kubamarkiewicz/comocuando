@@ -46,17 +46,28 @@ class DatePicker extends FormWidgetBase
      */
     public $yearRange = null;
 
+    /**
+     * @var int first day of the week
+     * eg: 0 (Sunday), 1 (Monday), 2 (Tuesday), etc.
+     */
+    public $firstDay = 0;
+
+    /**
+     * @var bool change datetime exactly as is in database
+     */
+    public $ignoreTimezone = false;
+
     //
     // Object properties
     //
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     protected $defaultAlias = 'datepicker';
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function init()
     {
@@ -66,6 +77,8 @@ class DatePicker extends FormWidgetBase
             'minDate',
             'maxDate',
             'yearRange',
+            'firstDay',
+            'ignoreTimezone',
         ]);
 
         $this->mode = strtolower($this->mode);
@@ -84,7 +97,7 @@ class DatePicker extends FormWidgetBase
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function render()
     {
@@ -112,13 +125,15 @@ class DatePicker extends FormWidgetBase
         $this->vars['minDate'] = $this->minDate;
         $this->vars['maxDate'] = $this->maxDate;
         $this->vars['yearRange'] = $this->yearRange;
+        $this->vars['firstDay'] = $this->firstDay;
+        $this->vars['ignoreTimezone'] = $this->ignoreTimezone;
         $this->vars['format'] = $this->format;
         $this->vars['formatMoment'] = $this->getDateFormatMoment();
         $this->vars['formatAlias'] = $this->getDateFormatAlias();
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getSaveValue($value)
     {

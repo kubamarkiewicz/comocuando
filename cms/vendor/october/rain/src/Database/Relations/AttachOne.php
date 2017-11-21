@@ -3,7 +3,6 @@
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\MorphOne as MorphOneBase;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use October\Rain\Database\Attach\File as FileModel;
 
 class AttachOne extends MorphOneBase
@@ -32,15 +31,17 @@ class AttachOne extends MorphOneBase
      */
     public function setSimpleValue($value)
     {
-        if (is_array($value))
+        if (is_array($value)) {
             $value = reset($value);
+        }
 
         /*
          * Newly uploaded file
          */
-        if ($value instanceof UploadedFile) {
+        if ($this->isValidFileData($value)) {
             $this->parent->bindEventOnce('model.afterSave', function() use ($value) {
-                $this->create(['data' => $value]);
+                $file = $this->create(['data' => $value]);
+                $this->parent->setRelation($this->relationName, $file);
             });
         }
         /*
@@ -51,6 +52,11 @@ class AttachOne extends MorphOneBase
                 $this->add($value);
             });
         }
+
+        /*
+         * The relation is set here to satisfy `getValidationValue`
+         */
+        $this->parent->setRelation($this->relationName, $value);
     }
 
     /**
@@ -59,6 +65,30 @@ class AttachOne extends MorphOneBase
      */
     public function getSimpleValue()
     {
+        if ($value = $this->getSimpleValueInternal()) {
+            return $value->getPath();
+        }
+
+        return null;
+    }
+
+    /**
+     * Helper for getting this relationship validation value.
+     */
+    public function getValidationValue()
+    {
+        if ($value = $this->getSimpleValueInternal()) {
+            return $this->makeValidationFile($value);
+        }
+
+        return null;
+    }
+
+    /**
+     * Internal method used by `getSimpleValue` and `getValidationValue`
+     */
+    protected function getSimpleValueInternal()
+    {
         $value = null;
 
         $file = ($sessionKey = $this->parent->sessionKey)
@@ -66,7 +96,7 @@ class AttachOne extends MorphOneBase
             : $this->parent->{$this->relationName};
 
         if ($file) {
-            $value = $file->getPath();
+            $value = $file;
         }
 
         return $value;

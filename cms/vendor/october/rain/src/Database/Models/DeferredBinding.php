@@ -1,6 +1,7 @@
 <?php namespace October\Rain\Database\Models;
 
 use Db;
+use Carbon\Carbon;
 use October\Rain\Database\Model;
 use Exception;
 
@@ -16,6 +17,11 @@ class DeferredBinding extends Model
      * @var string The database table used by the model.
      */
     public $table = 'deferred_bindings';
+
+    /**
+     * @var bool Indicates if duplicate queries from this model should be cached in memory.
+     */
+    public $duplicateCache = false;
 
     /**
      * Prevents duplicates and conflicting binds.
@@ -81,7 +87,7 @@ class DeferredBinding extends Model
      */
     public static function cleanUp($days = 5)
     {
-        $records = self::whereRaw('ADDDATE(created_at, INTERVAL :days DAY) < NOW()', ['days' => $days])->get();
+        $records = self::where('created_at', '<',  Carbon::now()->subDays($days)->toDateTimeString())->get();
 
         foreach ($records as $record) {
             $record->deleteCancel();
