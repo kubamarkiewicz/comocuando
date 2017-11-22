@@ -1,15 +1,9 @@
 
-	<div id="preloader"></div>
-
-
     <section id="play">
 
-		<nav class="top">
-			<a href="index.html" class="btn menu control">
-				<span class="arrow arrow-left"></span> Inicio
-			</a>
-    		<!-- <h1 id="logo">como cuando</h1> -->
-		</nav>
+		<a id="back" href="index.html" class="btn menu control">
+			<span class="arrow arrow-left"></span> Inicio
+		</a>
 
 		<div class="wrap">
 			<video id="video-player" ng-src="{{ videoSrc }}" loop></video>
@@ -18,7 +12,7 @@
 			<nav class="controls">
 				<button class="btn play control" ng-click="togglePlay()"><span class="glyphicon glyphicon-pause"></span></button>
 				<a class="btn control comments" data-toggle="modal" data-target="#commentsModal">
-					<span class="arrow arrow-up"></span> Historias
+					<span class="text"></span> <span class="arrow"></span>
 				</a>
 			</nav>
 		</div>

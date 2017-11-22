@@ -11,14 +11,32 @@ app.controller('PlayController', function($scope, $rootScope, $http, $routeParam
     $scope.videoSrc = config.videoFiles[$routeParams.videoId - 1].file;
     $scope.audioSrc = config.audioFiles[$routeParams.audioId - 1].file;
     
+
+    // play only audio first
     setTimeout(function(){
         audioPlayer.play();
     }, 0);
     
+    // then fadein video
     setTimeout(function(){
     	videoPlayer.play();
         $(videoPlayer).addClass('show');
     }, 2000);
+
+    // then show controls
+    setTimeout(function(){
+        // iterate letters
+        var letters = 'Historias'.split("");
+        for (i in letters) {
+            setTimeout(function(){
+                var html = $('section#play a.comments .text').html();
+                $('section#play a.comments .text').html(html + letters.shift());
+            }, i * 100);
+        };
+    }, 5000);
+
+
+
 
     $scope.togglePlay = function() {
         if (videoPlayer.paused) {

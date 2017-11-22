@@ -32,7 +32,7 @@ body {
     letter-spacing: 0.05em;
     font-size: 16px;
     background-color: #121212;
-    color: #bbbbbb;
+    color: #d3cdc7;
 }
 a, a:focus { 
     color: inherit;
@@ -96,7 +96,7 @@ h3 {
     border-radius: 0;
     box-shadow: 0 5px 80px rgba(0,0,0,.2);
     background: #121212;
-    color: #bbbbbb;
+    color: #d3cdc7;
 }
 .modal-content .modal-body {
     padding: 10px 60px 40px 60px;
@@ -116,7 +116,7 @@ h3 {
     filter: none;
     opacity: 1;
     text-shadow: none;
-    color: #bbbbbb;
+    color: #f5f3ef;
     font-weight: 300;
 }
 
@@ -236,7 +236,7 @@ h3 {
     background-position: center center;
     /*border: 1px solid #ffffff;*/
     border-radius: 50%;
-    opacity: 0.75;
+    opacity: 0.9;;
     margin-top: -5px;
     vertical-align: middle;
     background-size: 32px;
@@ -256,36 +256,6 @@ h3 {
     background-image: url(../images/arrow-black.png);
 }
 
-.first-letter {
-    display: inline-block;
-    border: 1px solid #ffffff;
-    border-radius: 50%;
-    margin-top: -5px;
-    vertical-align: middle;
-    height: 40px;
-    width: 40px;
-    line-height: 40px;
-    text-align: center;
-    padding: 1px 0px 0 5px;
-    margin-right: 7px;;;;;
-}
-
-
-#preloader {
-    display: none;
-    position: absolute;
-    z-index: -1;
-    width: 200px;
-    height: 200px;
-    background-image: url(../images/loading.png);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 200px;
-    /*background-size: 60px;*/
-    animation: spin 5s infinite linear;
-    left: calc(50% - 100px);
-    top: calc(50% - 100px);
-}
 
 .gly-spin {
     animation: spin 2s infinite linear;
@@ -299,19 +269,6 @@ h3 {
     }
 }
  
-.initialCircle {
-    border-radius: 50%;
-    border: 1px solid #333;
-    margin-right: 2em;
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    padding-left: 13px;
-}
-.initialCircle::first-letter {
-    margin-right: 14px;
-}
 
 
 /***********************************************/
@@ -391,7 +348,6 @@ section#backgrounds .background.selected {
 
 body.page-home {
     background-color: #121212;
-    color: #cfccc7;
 }
 
 section#menu {
@@ -606,67 +562,27 @@ section#play  {
 }
 
 section#play .wrap {
-    height: calc(100vh - 60px);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    height: calc(100vh - 60px);
 }
 
 @keyframes fadeInOnLoad { 
-    0%      { opacity:0.1; } 
+    0%      { opacity:0; } 
     100%    { opacity:1; } 
 }
-section#play nav {
+section#play #back {
     animation-name:fadeInOnLoad;
     animation-fill-mode:forwards;
-    animation-duration:0s;
-    animation-delay:1.5s;
-    opacity:1;
+    animation-duration:2s;
+    animation-delay:5s;
+    opacity:0;
+    margin-top:17px;
+    position:relative;
 }
-section#play #logo {
-}
-section#play #logo a {
-}
-section#play #credits-link {
-    top: 11px;
-}
-section#play nav {
-}
-section#play nav a,
-section#play nav .btn {
-}
-section#play nav a:active,
-section#play nav .btn:active {
-    opacity: 1;
-}
-section#play nav .btn {
-    margin-bottom: 0;
-    margin-top: 0;
-    line-height: 100%;
-    color: inherit;
-}
-section#play nav.top {
-    height: 50px;
-    padding-top: 10px;
-}
-section#play nav.top a.menu {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    text-align: center;
-    padding-top: 7px;
-    margin-top: -3px;
-}
-section#play nav.top a.menu::first-letter {
-    margin-right: 11px;
-}
-section#play nav.top a.menu .slice {
-    display: block;
-    width: 17px;
-    margin: 5px auto 0 auto;
-    border-top: 1px solid #bbbbbb;
-}
+
+
 section#play nav.controls {
     padding-top: 14px;
     text-align: center;
@@ -678,10 +594,15 @@ section#play nav.controls .play {
     background-color: transparent;
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
     margin-top: -60px;
     opacity: 0.5;
     color: #ffffff !important;
+    animation-name:fadeInOnLoad;
+    animation-fill-mode:forwards;
+    animation-duration:2s;
+    animation-delay:5s;
+    opacity:0;
+    transform: translateX(-50%);
 }
 section#play .btn.back {
     text-align: right;
@@ -701,11 +622,14 @@ section#play #video-player.show {
 section#play nav.controls a.comments {
     font-size: 16px;
     padding-right: 36px;
+    animation-name:fadeInOnLoad;
+    animation-fill-mode:forwards;
+    animation-duration:1s;
+    animation-delay: 5s;
+    opacity:0;
+    padding-left: 80px;;
 }
 
-section#play .btn.credits {
-    float: right;
-}
 
 
 

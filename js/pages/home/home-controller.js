@@ -63,7 +63,7 @@ app.controller('HomeController', function($scope, $rootScope, $http, $location, 
 
 
     function playSound1() {
-        var audio = document.getElementById("click-player");
+        var audio = document.getElementById("audio-player-1");
         audio.currentTime = 0;
         audio.play();
     }
