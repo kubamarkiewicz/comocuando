@@ -58,6 +58,11 @@ h3 {
 /* Overwritten Bootstrap Styles                */
 /***********************************************/
 
+.well {
+    border-radius: 0;
+    box-shadow: none;;;
+
+}
 
 .btn, .btn:focus {
     background: transparent;
@@ -714,12 +719,29 @@ section#play .btn.credits {
     color: #333;
 }
 
+#commentsModal form {
+    margin-top: 50px;;
+}
+
+#commentsModal .thankyou {
+    background-color: #343434;
+    color: #cfc4b0;
+    padding: 0px 60px;
+    margin: 20px -60px 0 -60px;
+    font-size: 18px;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    max-height: 0;
+    line-height: 60px;
+}
+#commentsModal .thankyou.show {
+    max-height: 55px;
+}
 
 #commentsModal .info {
     margin-bottom: 0px;
-    margin-top: 50px;
     font-size: 30px;
-    text-align: center;;;;;
+    text-align: center;
 }
 #commentsModal .comments,
 #commentsModal #comment-form label,
@@ -739,6 +761,9 @@ section#play .btn.credits {
 #commentsModal .spacer {
     text-align: center;
     font-size: 16px;
+}
+#commentsModal .comments .comment:last-child .spacer {
+    display: none;
 }
 #commentsModal #comment-form .textarea-wrap {
     display: flex;

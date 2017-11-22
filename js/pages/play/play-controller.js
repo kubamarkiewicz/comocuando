@@ -74,6 +74,7 @@ app.controller('PlayController', function($scope, $rootScope, $http, $routeParam
             $("#comment-form button[type=submit]").button('reset');
             $("#comment-form textarea").val('');
             loadCommentsData();
+            $("#commentsModal .thankyou").addClass('show');
         })
         .error(function(){
             console.log("error");
