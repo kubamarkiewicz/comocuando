@@ -604,7 +604,6 @@ section#play .wrap {
 section#play #back {
     opacity:0;
     position:absolute;
-    z-index:2000;
     bottom:9px;
 }
 body.playing section#play #back {
