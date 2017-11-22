@@ -1,4 +1,7 @@
 
+	<a id="play-start"></a>
+
+
     <section id="play">
 
 		<a id="back" href="index.html" class="btn menu control">
@@ -6,8 +9,10 @@
 		</a>
 
 		<div class="wrap">
-			<video id="video-player" ng-src="{{ videoSrc }}" loop></video>
-        	<audio id="audio-player" ng-src="{{ audioSrc }}" loop></audio>
+			<video id="video-player" loop defaultMuted autoplay>
+  				<source ng-src="{{ videoSrc }}" type="video/mp4">
+  			</video>
+        	<audio id="audio-player" ng-src="{{ audioSrc }}" loop autoplay></audio>
 		
 			<nav class="controls">
 				<button class="btn play control" ng-click="togglePlay()"><span class="glyphicon glyphicon-pause"></span></button>

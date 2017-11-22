@@ -14,26 +14,54 @@ app.controller('PlayController', function($scope, $rootScope, $http, $routeParam
 
     // play only audio first
     setTimeout(function(){
-        audioPlayer.play();
-    }, 0);
-    
-    // then fadein video
-    setTimeout(function(){
-    	videoPlayer.play();
-        $(videoPlayer).addClass('show');
-    }, 2000);
+        // audioPlayer.play();
+        audioPlayer.pause();
+    }, 1);
 
-    // then show controls
+
+    
+    // start animarions
     setTimeout(function(){
-        // iterate letters
-        var letters = 'Historias'.split("");
-        for (i in letters) {
-            setTimeout(function(){
-                var html = $('section#play a.comments .text').html();
-                $('section#play a.comments .text').html(html + letters.shift());
-            }, i * 100);
-        };
-    }, 5000);
+        if (audioPlayer.paused) { // on mobiles show play button
+            $('a#play-start').addClass('show');
+        }
+        else { // on desktop autostart 
+            startAnimations();
+        }
+    }, 100);
+
+
+    function startAnimations()
+    {
+        $('body').addClass('playing');
+
+        // then fadein video
+        setTimeout(function(){
+            videoPlayer.play();
+        }, 2000);
+
+        // then show controls
+        setTimeout(function(){
+            // iterate letters
+            var letters = 'Historias'.split("");
+            for (i in letters) {
+                setTimeout(function(){
+                    var html = $('section#play a.comments .text').html();
+                    $('section#play a.comments .text').html(html + letters.shift());
+                }, i * 100);
+            };
+        }, 5000);
+    }
+
+
+    $('a#play-start').click(function(){
+        audioPlayer.play();
+        $(this).removeClass('show');
+        startAnimations();
+    })
+
+
+
 
 
 

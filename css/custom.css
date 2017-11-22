@@ -552,13 +552,30 @@ section#menu #instructions {
 
 /* Play section *******************************/
 
+a#play-start {
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+    background-image: url(../images/icons/ico-play-2.png);
+    border-radius: 50%;
+    border: 2px solid #f5f3ef;
+    left: 50%;
+    top: 50%;
+    background-size: 19px;
+    height: 60px;
+    width: 60px;
+    transform: translate(-50%, -50%);
+    z-index: 100;;
+    display: none;
+}
+a#play-start.show {
+    display: block;
+}
+
+
 section#play  {
-    animation-name:fadeIn;
-    animation-fill-mode:forwards;
-    animation-duration:0s;
-    animation-delay:1s;
     padding:50px 15px 0 15px;
-    opacity:0;
 }
 
 section#play .wrap {
@@ -573,14 +590,16 @@ section#play .wrap {
     100%    { opacity:1; } 
 }
 section#play #back {
-    animation-name:fadeInOnLoad;
-    animation-fill-mode:forwards;
-    animation-duration:2s;
-    animation-delay:5s;
     opacity:0;
     position:absolute;
     z-index:2000;
     bottom:9px;
+}
+body.playing section#play #back {
+    animation-name:fadeInOnLoad;
+    animation-fill-mode:forwards;
+    animation-duration:2s;
+    animation-delay:5s;
 }
 
 
@@ -589,7 +608,6 @@ section#play nav.controls {
     text-align: center;
 }
 section#play nav.controls .play {
-    font-size: 2vw;
     border-radius: 50%;
     text-align: center;
     background-color: transparent;
@@ -597,12 +615,15 @@ section#play nav.controls .play {
     left: 50%;
     margin-top: -60px;
     color: #ffffff !important;
+    transform: translateX(-50%);
+    opacity: 0;
+    font-size: 20px;
+}
+body.playing section#play nav.controls .play {
     animation-name:fadeInOnLoad;
     animation-fill-mode:forwards;
     animation-duration:2s;
     animation-delay:5s;
-    transform: translateX(-50%);
-    opacity: 0;
 }
 section#play nav.controls .play .glyphicon {
     opacity: 0.5;
@@ -617,20 +638,24 @@ section#play #video-player {
     max-height: calc(100vh - 108px);
     display: block;
     opacity: 0;
-    transition: opacity 0.5s linear;
 }
-section#play #video-player.show {
-    opacity: 1;
+body.playing section#play #video-player {
+    animation-name:fadeInOnLoad;
+    animation-fill-mode:forwards;
+    animation-duration:0.5s;
+    animation-delay:2s;
 }
 section#play nav.controls a.comments {
     font-size: 16px;
     padding-right: 36px;
+    opacity:0;
+    padding-left: 80px;;
+}
+body.playing section#play nav.controls a.comments {
     animation-name:fadeInOnLoad;
     animation-fill-mode:forwards;
     animation-duration:1s;
     animation-delay: 5s;
-    opacity:0;
-    padding-left: 80px;;
 }
 
 
