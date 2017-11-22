@@ -14,8 +14,8 @@ app.controller('PlayController', function($scope, $rootScope, $http, $routeParam
 
     // play only audio first
     setTimeout(function(){
-        // audioPlayer.play();
-        audioPlayer.pause();
+        audioPlayer.play();
+        // audioPlayer.pause();
     }, 1);
 
 
@@ -55,7 +55,9 @@ app.controller('PlayController', function($scope, $rootScope, $http, $routeParam
 
 
     $('a#play-start').click(function(){
+        document.getElementById("click-player").play();
         audioPlayer.play();
+        videoPlayer.play();
         $(this).removeClass('show');
         startAnimations();
     })
