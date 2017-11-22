@@ -105,7 +105,12 @@ app.controller('PlayController', function($scope, $rootScope, $http, $routeParam
     }
 
 
+    $('#commentsModal').on('show.bs.modal', function () {
+        $("#close-modal").addClass('show');
+    });
+
     $('#commentsModal').on('hide.bs.modal', function () {
+        $("#close-modal").removeClass('show');
         $('#commentsModal').scrollTop(0);
     });
 

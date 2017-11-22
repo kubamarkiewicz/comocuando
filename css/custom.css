@@ -420,7 +420,7 @@ section#menu .video {
     height: 100%; 
 }
 section#menu .video a {
-    top: calc(33% - 30px);;
+    top: calc(33% - 0px);;
 }
 section#menu .video a:nth-child(1) {
     left: 8.35%;
@@ -475,7 +475,7 @@ section#menu .audio {
     height: 100%; 
 }
 section#menu .audio a {
-    top: calc(66% - 30px);
+    top: calc(66% - 0px);
 }
 section#menu .audio a:nth-child(1) {
     left: 8.35%;
@@ -557,7 +557,7 @@ section#play  {
     animation-fill-mode:forwards;
     animation-duration:0s;
     animation-delay:1s;
-    padding:0px 15px;
+    padding:50px 15px 0 15px;
     opacity:0;
 }
 
@@ -578,8 +578,9 @@ section#play #back {
     animation-duration:2s;
     animation-delay:5s;
     opacity:0;
-    margin-top:17px;
-    position:relative;
+    position:absolute;
+    z-index:2000;
+    bottom:9px;
 }
 
 
@@ -595,14 +596,16 @@ section#play nav.controls .play {
     position: absolute;
     left: 50%;
     margin-top: -60px;
-    opacity: 0.5;
     color: #ffffff !important;
     animation-name:fadeInOnLoad;
     animation-fill-mode:forwards;
     animation-duration:2s;
     animation-delay:5s;
-    opacity:0;
     transform: translateX(-50%);
+    opacity: 0;
+}
+section#play nav.controls .play .glyphicon {
+    opacity: 0.5;
 }
 section#play .btn.back {
     text-align: right;
@@ -710,7 +713,7 @@ section#play nav.controls a.comments {
     flex-grow: 1;
 }
 
-#commentsModal #comment-form .btn {
+#commentsModal #comment-form .btn[type=submit] {
     font-size: 16px;
 }
 #commentsModal .social-share {
@@ -723,6 +726,24 @@ section#play nav.controls a.comments {
 
 #commentsModal #comment-form .btn .hand {
     transform: none;
+}
+
+#close-modal {
+    position: absolute;
+    top: 0px;
+    right: calc(30px);
+    z-index: 2000;
+    font-size: 45px;;;;;
+    display: none;
+}
+#close-modal.show {
+    display: block;
+}
+#commentsModal  .close-link {
+    font-size: 14px;
+    position: absolute;
+    margin-top: -6px;
+    margin-left: -45px;
 }
 
 
