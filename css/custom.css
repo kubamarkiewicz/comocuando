@@ -267,6 +267,7 @@ h3 {
 
 
 #preloader {
+    display: none;
     position: absolute;
     z-index: -1;
     width: 200px;
@@ -686,6 +687,11 @@ section#play #video-player {
     height: auto;
     max-height: calc(100vh - 108px);
     display: block;
+    opacity: 0;
+    transition: opacity 0.5s linear;
+}
+section#play #video-player.show {
+    opacity: 1;
 }
 section#play nav.controls a.comments {
     font-size: 16px;

@@ -13,9 +13,12 @@ app.controller('PlayController', function($scope, $rootScope, $http, $routeParam
     
     setTimeout(function(){
         audioPlayer.play();
+    }, 0);
+    
+    setTimeout(function(){
     	videoPlayer.play();
-        // $('#commentsModal').scrollTop(0);
-    }, 100);
+        $(videoPlayer).addClass('show');
+    }, 2000);
 
     $scope.togglePlay = function() {
         if (videoPlayer.paused) {
