@@ -91,4 +91,7 @@ app.controller('PlayController', function($scope, $rootScope, $http, $routeParam
     });
 
 
+    $('#fb-like-target').replaceWith($('#fb-like'));
+
+
 });
