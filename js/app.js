@@ -12,11 +12,11 @@ app.config(function ($routeProvider, $locationProvider) {
 
         .when('/', { 
             controller: 'HomeController', 
-            templateUrl: 'js/pages/home/index.html?v=1' 
+            templateUrl: 'js/pages/home/index.html?v=4' 
         })  
         .when('/:videoId/:audioId', { 
             controller: 'PlayController', 
-            templateUrl: 'js/pages/play/index.html?v=1' 
+            templateUrl: 'js/pages/play/index.html?v=4' 
         })     
         .otherwise({ 
             redirectTo: '/' 
