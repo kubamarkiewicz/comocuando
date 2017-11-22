@@ -214,6 +214,7 @@ h3 {
     cursor: pointer;
     opacity: 0.5;
     bottom: 10px;
+    z-index: 100;
 }
 
 
