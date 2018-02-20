@@ -46,4 +46,5 @@
   'kubamarkiewicz\\comocuando\\Controllers\\comments' => 'plugins/kubamarkiewicz/comocuando/controllers/comments.php',
   'KubaMarkiewicz\\ComoCuando\\Models\\Comment' => 'plugins/kubamarkiewicz/comocuando/models/Comment.php',
   'KubaMarkiewicz\\ComoCuando\\Api\\Comments' => 'plugins/kubamarkiewicz/comocuando/api/Comments.php',
+  'backend\\Controllers\\index' => 'modules/backend/controllers/index.php',
 );

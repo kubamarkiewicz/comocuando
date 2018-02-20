@@ -22,6 +22,7 @@ class Comments extends Controller
         $model = new Comment();
         $model->video_id = $video_id;
         $model->comment = $_POST['comment'];
+        $model->date = date("Y-m-d H:i:s");
         $model->save();
 
         return response()->json(true, 200, [], JSON_PRETTY_PRINT);

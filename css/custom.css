@@ -149,16 +149,6 @@ h3 {
 /* Components                                  */
 /***********************************************/
 
-@keyframes intro { 
-    99%     { visibility: visible; } 
-    100%    { visibility: hidden; }  
-}
-@keyframes introText { 
-    0%      { visibility: hidden; } 
-    25%     { visibility: visible; }  
-    75%     { visibility: hidden; } 
-}
-
 
 #intro {
     position: absolute;
@@ -181,6 +171,16 @@ h3 {
     text-transform: uppercase;
     font-weight: 600;;;
 }
+@keyframes intro { 
+    99%     { visibility: visible; } 
+    100%    { visibility: hidden; }  
+}
+@keyframes introText { 
+    0%      { visibility: hidden; } 
+    25%     { visibility: visible; }  
+    75%     { visibility: hidden; } 
+}
+
 
 
 @keyframes fadeIn { 
